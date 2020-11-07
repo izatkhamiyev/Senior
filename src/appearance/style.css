@@ -1,0 +1,123 @@
+ a {color: #eee; text-decoration: none}
+a:hover {color: blue;}
+
+#jeeFaceFilterCanvas {
+    max-height: 100%;
+    max-width: 100%;
+    left: 0%;
+    top: 0%;
+    width: 100vmin;
+    height: 90vmin;
+    transform: translate(0%, 0%) rotateY(180deg);
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    z-index: 1;
+}
+
+/* @media (max-width: 500px) {
+    #jeeFaceFilterCanvas {
+        height: 70% !important;
+        width: 100% !important;
+    }
+} */
+
+.loader {
+  position: fixed;
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  z-index: 2;
+  border-top: 16px solid #FFF424;
+  border-bottom: 16px solid #000000;
+  animation: spin 2s linear infinite;
+  display: none;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+#logo {
+  position: fixed;
+  z-index: 3;
+  opacity: 0.7;
+  object-fit:cover;
+  display: none;
+}
+
+#size-input{
+  margin: 5px;
+  width: 45px;
+}
+
+#eyetoolCheckBlock{
+  padding: 5px;
+  position: absolute;
+  background-color: #F5CB5C  ;
+}
+
+#eyetoolCheckInnerText, .eyetoolCheckInnerIcon{
+  color: black;
+}
+
+/* Popup container - can be anything you want */
+.popup {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* The actual popup */
+.popup .popuptext {
+  visibility: hidden;
+  width: 180px;
+  background-color: #555;
+  color: #fff;
+  border-radius: 6px;
+  padding: 8px 8px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -90px;
+  margin-bottom: 20px;
+}
+
+/* Popup arrow */
+.popup .popuptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+/* Toggle this class - hide and show the popup */
+.popup .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;} 
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+}

@@ -1,0 +1,4 @@
+node_modules
+libs/three.js-dev.zip
+src/static/models/*
+!src/static/models/eyetool

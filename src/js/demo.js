@@ -239,15 +239,15 @@ function init_faceFilter(videoSettings, pathToModel){
 
 
 var permission = function(domain){
-    var url = (window.location != window.parent.location)
-            ? document.referrer
-            : document.location.href;
-    var regex = /:\/\/(.[^/]+)/;
-    url = url.match(regex)[1] ;
-    console.log(domain, url);
+    // var url = (window.location != window.parent.location)
+    //         ? document.referrer
+    //         : document.location.href;
+    // var regex = /:\/\/(.[^/]+)/;
+    // url = url.match(regex)[1] ;
+    // console.log(domain, url);
 
-    if(domain !== url){
-        return false;
-    }
+    // if(domain !== url){
+    //     return false;
+    // }
     return true;
 }

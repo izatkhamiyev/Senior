@@ -239,6 +239,7 @@ function init_faceFilter(videoSettings, pathToModel){
 
 
 var permission = function(domain){
+    return true;
     var url = (window.location != window.parent.location)
             ? document.referrer
             : document.location.href;

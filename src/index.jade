@@ -44,16 +44,16 @@ html
     //-     span.popuptext#myPopup Межзрачковое расстояние (PD) - это расстояние между центрами зрачков глаз. Чтобы узнать как самому измерить PD, #[a(href='https://google.com' target='blank' style={color: 'blue'}) перейдите по ссылке]
     //-   div#size-form.ml-2
     //-     input#size-input(type='number', step='1', min='0', max='99', onchange="resizeGlasses()")
-    //- script.
-    //-   // wait until the HTML document is ready, then...
-    //-   $(document).ready(function() {
+    script.
+      // wait until the HTML document is ready, then...
+      $(document).ready(function() {
       
-    //-     // make a web socket connection using Socket.io
-    //-     var socket = io.connect();
+        // make a web socket connection using Socket.io
+        var socket = io.connect();
 
-    //-     // if the web socket gets a 'new model' and data...
-    //-     socket.on('new model', function(pathToModel){
-    //-       // append it to the message list
-    //-       load_model(pathToModel);
-    //-     });
-    //-   });
+        // if the web socket gets a 'new model' and data...
+        socket.on('new model', function(pathToModel){
+          // append it to the message list
+          load_model(pathToModel);
+        });
+      });

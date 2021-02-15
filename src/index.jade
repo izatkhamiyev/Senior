@@ -15,26 +15,37 @@ html
     title EYETOOL TRY ON
 
     // Requred libs
-    script(type="text/javascript" src="./dist/EyetoolFaceFilter.js")
-    script(type="text/javascript" src="./libs/threejs/v97/three.min.js")
-    script(type="text/javascript" src="./libs/threejs/v97/GLTFLoader.js")
+    script(type="text/javascript" src="./dist/jeelizFaceFilter.js")
+    script(type="text/javascript" src="./libs/threejs/v112/three.min.js")
+    script(type="text/javascript" src="./libs/threejs/v112/GLTFLoader.js")
     script(type="text/javascript" src="./helpers/inflate.min.js")
-    script(type="text/javascript" src="./helpers/EyetoolResizer.js")
-    script(type="text/javascript" src="./helpers/EyetoolThreejsHelper.js")
+    script(type="text/javascript" src="./dist/JeelizResizer.js")
+    script(type="text/javascript" src="./dist/JeelizThreeHelper.js")
+    script(type="text/javascript" src="./helpers/Canvas2DDisplay.js")
+    // Pico Js
+    script(type="text/javascript" src="./dist/lploc.js")
+    script(type="text/javascript" src="./dist/pico.js")
 
     // Our JS files
+    script(type="text/javascript" src="./js/ratio.js")
+    script(type="text/javascript" src="./js/pupil.js")
     script(type="text/javascript" src="./js/resizer.js")
     script(type="text/javascript" src="./js/demo.js")
 
     // Our CSS
     link(rel='stylesheet', href='./appearance/style.css')
   
-  body(onload="main(`#{model}`, `#{client}`)", style={color: 'white'}, onresize="adaptSize()")
+  body(onload="main(`#{model}`, `#{client}`)", style={color: '#ffffff'}, onresize="adaptSize()")
     canvas#jeeFaceFilterCanvas()
+    div.ratio_display
+      p PD:
+        span#pd_display
+      p Face_Width:
+        span#fw_display
+      p Ratio:
+        span#ratio_display
     //- div#choosePhoto(style={display: "block"})
     //- div#loader(class = 'loader')
-    //- a(href = 'https://eyetool.kz/', target = "_blank")
-    //-   img#logo(src = '/assets/logoEyetool.png')
     //- //- div#size-form
     //- //-   input#size-input(type='number', step='0.01', onchange="resizeGlasses()")
     //- div#eyetoolCheckBlock.d-flex.justify-content-center.align-items-center
@@ -44,16 +55,16 @@ html
     //-     span.popuptext#myPopup Межзрачковое расстояние (PD) - это расстояние между центрами зрачков глаз. Чтобы узнать как самому измерить PD, #[a(href='https://google.com' target='blank' style={color: 'blue'}) перейдите по ссылке]
     //-   div#size-form.ml-2
     //-     input#size-input(type='number', step='1', min='0', max='99', onchange="resizeGlasses()")
-    //- script.
-    //-   // wait until the HTML document is ready, then...
-    //-   $(document).ready(function() {
+    script.
+      // wait until the HTML document is ready, then...
+      $(document).ready(function() {
       
-    //-     // make a web socket connection using Socket.io
-    //-     var socket = io.connect();
+        // make a web socket connection using Socket.io
+        var socket = io.connect();
 
-    //-     // if the web socket gets a 'new model' and data...
-    //-     socket.on('new model', function(pathToModel){
-    //-       // append it to the message list
-    //-       load_model(pathToModel);
-    //-     });
-    //-   });
+        // if the web socket gets a 'new model' and data...
+        socket.on('new model', function(pathToModel){
+          // append it to the message list
+          load_model(pathToModel);
+        });
+      });

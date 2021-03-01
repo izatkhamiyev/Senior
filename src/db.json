@@ -9,14 +9,8 @@
         {
             "id": 1,
             "name": "eyetool",
-            "api_key": "2b40df6f-7d6b-4934-82df-b0db98395c57",
-            "domain": "eyetool.kz" 
-        },
-        {
-            "id": 2,
-            "name": "broglasses",
-            "api_key": "864f64ad-ba9b-4048-a274-8e2c48be34d9",
-            "domain": "broglasses.me" 
+            "api_key": "5d2bb82be266957bd4214e42dc4c2b5b",
+            "domain": "none" 
         }
     ]
 }

@@ -36,6 +36,11 @@ function resizeGlasses(){
     THREEFACEOBJ3DPIVOTED.scale.set(sz_value / 100, sz_value / 100, sz_value / 100);
 }
 
+function resizeGlassesFromPD(pupil_dist){
+    var coeff = (-0.0932*(pupil_dist/10) + 14.3) * 0.6 / 9.4;
+    THREEFACEOBJ3DPIVOTED.scale.set(coeff, coeff, coeff);
+}
+
 // When the user clicks on div, open the popup
 function myFunction() {
     var popup = document.getElementById("myPopup");

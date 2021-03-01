@@ -61,7 +61,7 @@ pupil.initialize = function(spec){
     });
 };
 
-pupil.detect = function(CVD){
+pupil.detect = function(){
 
     var width = pupil.width;
     var height = pupil.height;
@@ -105,7 +105,7 @@ pupil.detect = function(CVD){
     for(i=0; i<dets.length; ++i){
         if(dets[i][3]>50.0){
             var r, c, s;
-            var ctx = CVD.ctx;
+            // var ctx = CVD.ctx;
             // first eye
             r = dets[i][0] - 0.075*dets[i][2];
             c = dets[i][1] - 0.175*dets[i][2];

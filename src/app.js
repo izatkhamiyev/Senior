@@ -60,7 +60,7 @@ app.get("/session", function(req, res){
   }
   session_to_socket.set(key, '');
   res.send({'sessionID': key});
-})
+});
 
 app.get("/update", function(req, res) {
   client = find_client(req, res);
@@ -131,22 +131,31 @@ app.post("/upload", function(req, res){
   if(req.busboy){
     var counter = 0;
     req.busboy.on('file', function(fieldname, file, filename){
+      if(filename.match(/^.*?(?=[\^#%&$\*:<>\?/\{\|\}]).*$/)){
+        return res.status(422).send({
+          message: "Invalid filename, please use alphanumerical characters"
+        });
+      }else if(filename.length < 5){
+        return res.status(422).send({
+          message: "Filename is too short"
+        });
+      }
       console.log(file);
-      // console.log("Uploading: " + filename);
-      // fstream = fs.createWriteStream(`${__dirname}/static/models/${client.name}/${filename}`);
-      // file.pipe(fstream);
-      // fstream.on('close', function(){
-      //   console.log("Upload Finished of " + filename);
-      //   counter++;
-      //   if(counter == 1){
-      //     res.send("Successfully uploaded");
-      //   }
-      // });
-      res.send("Fuck you");
+      console.log("Uploading: " + filename);
+      fstream = fs.createWriteStream(`${__dirname}/static/models/${client.name}/${filename}`);
+      file.pipe(fstream);
+      fstream.on('close', function(){
+        console.log("Upload Finished of " + filename);
+        counter++;
+        if(counter == 1){
+          res.send("Successfully uploaded");
+        }
+      });
     });
-    
   }
   else{
-    res.send('Upload Failed');
+    return res.status(422).send({
+      message: 'Upload Failed. Please try again later'
+    });
   }
 });

@@ -2,3 +2,7 @@
 #listOfModels a{
     padding-right: 2em;
 }
+
+.no-gutter{
+    --bs-gutter-x: 0 !important;
+}

@@ -14,7 +14,7 @@ html
 
     body
         div
-            .row.my-4.justify-content-center
+            .row.my-4.justify-content-center.no-gutter
                 .card.col-md-6.border-warning.border-5.rounded-3
                     .card-body
                         h3 Model Upload Instructions
@@ -26,13 +26,9 @@ html
                             li 
                                 code Model Name
                                 |  will be the name used in API to open this file, therefore chose it carefully
-                            li Check the 
-                                code Update if already exists
-                                |  checkbox if you want to update the file (
-                                strong warning:
-                                |  this will overwrite the file). Only file with the same 
-                                code Model Name
-                                |  will be updated
+                            li If 
+                                code Model Name 
+                                |  already exists in the database, then the model will be overwritten
                         p You can see your current accessible models below
             #accordionMain.accordion
                 .accordion-item
@@ -42,25 +38,24 @@ html
                     #collapseOne.accordion-collapse.collapse(aria-labelledby='headingOne' data-bs-parent='#accordionMain')
                         .accordion-body
                             #listOfModels
-            .row.justify-content-center.my-3
+            .row.justify-content-center.my-3.no-gutter
                 .row.g-3.my-3.mx-3.col-lg-6.border.px-2.py-2
-                    .row.my-4
-                        .col-sm-7.row
+                    form#uploadForm.row.my-4
+                        .col-sm-7.row.form-group
                             label.col-sm-4.col-form-label(for='inputModelName') Model Name :
                             .col-sm-8
-                                input#inputModelName.form-control(type='email')
-                        .col-sm-5
-                            input#formFile.form-control(type='file')
-                    .row.mx-3.my-3
-                        .form-check
-                            input#checkUpdate.form-check-input(type='checkbox' value='')
-                            label.form-check-label(for='checkUpdate')
-                            | Update if already exists
+                                input#inputModelName.form-control(type='email', required='')
+                        .col-sm-5.form-group
+                            input#formFile.form-control(type='file', required='')
                     .row.justify-content-center.my-4
                         button#uploadBtn.btn.btn-primary.col-sm-4(type="button") Upload
-
-            //- form(action="", method="post", enctype="multipart/form-data")
-            //-     label Select GLB File:
-            //-     input(type="file", name="glb")
-            //-     br
-            //-     input(type="submit", value="UPLOAD")
+            #mainModal.modal.fade(tabindex='-1' aria-hidden='true')
+                .modal-dialog.modal-dialog-centered
+                    .modal-content
+                        .modal-header
+                            h5#modalTitle.modal-title Modal title
+                            button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+                        .modal-body
+                            #modalBody
+                        .modal-footer
+                            button.btn.btn-primary(type='button' data-bs-dismiss='modal') Close

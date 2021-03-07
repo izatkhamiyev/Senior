@@ -3,14 +3,64 @@ html
     head
         meta(http-equiv="Content-Type" content="text/html; charset=utf-8")
         meta(http-equiv="content-language" content="en-EN" )
-        title EYETOOL UPLOAD MODEL
+        title UPLOAD MODEL
+
+        link(rel="stylesheet" href="/libs/bootstrap-5.0.0-beta2-dist/css/bootstrap.min.css")
+        link(rel='stylesheet', href='/appearance/upload_style.css')
+
+        script(type="text/javascript"  src="/libs/bootstrap-5.0.0-beta2-dist/js/bootstrap.min.js")
+        script(type="text/javascript" src="/libs/jquery/jquery-3.3.1.min.js")
+        script(type="text/javascript" src="/js/upload.js")
+
     body
-        center
-            form(action="", method="post", enctype="multipart/form-data")
-                label Select GLB File:
-                input(type="file", name="glb")
-                br
-                //- label Select MTL File:
-                //- input(type="file", name="mtl")
-                br
-                input(type="submit", value="UPLOAD")
+        div
+            .row.my-4.justify-content-center
+                .card.col-md-6.border-warning.border-5.rounded-3
+                    .card-body
+                        h3 Model Upload Instructions
+                        p To upload a new 3d model to the database, please follow instructions below:
+                        ul
+                            li File must be in GLTF
+                                code .glb
+                                |  format
+                            li 
+                                code Model Name
+                                |  will be the name used in API to open this file, therefore chose it carefully
+                            li Check the 
+                                code Update if already exists
+                                |  checkbox if you want to update the file (
+                                strong warning:
+                                |  this will overwrite the file). Only file with the same 
+                                code Model Name
+                                |  will be updated
+                        p You can see your current accessible models below
+            #accordionMain.accordion
+                .accordion-item
+                    h2#headingOne.accordion-header
+                    button.accordion-button(type='button' data-bs-toggle='collapse' data-bs-target='#collapseOne' aria-expanded='false' aria-controls='collapseOne')
+                        | Your current models are here
+                    #collapseOne.accordion-collapse.collapse(aria-labelledby='headingOne' data-bs-parent='#accordionMain')
+                        .accordion-body
+                            #listOfModels
+            .row.justify-content-center.my-3
+                .row.g-3.my-3.mx-3.col-lg-6.border.px-2.py-2
+                    .row.my-4
+                        .col-sm-7.row
+                            label.col-sm-4.col-form-label(for='inputModelName') Model Name :
+                            .col-sm-8
+                                input#inputModelName.form-control(type='email')
+                        .col-sm-5
+                            input#formFile.form-control(type='file')
+                    .row.mx-3.my-3
+                        .form-check
+                            input#checkUpdate.form-check-input(type='checkbox' value='')
+                            label.form-check-label(for='checkUpdate')
+                            | Update if already exists
+                    .row.justify-content-center.my-4
+                        button#uploadBtn.btn.btn-primary.col-sm-4(type="button") Upload
+
+            //- form(action="", method="post", enctype="multipart/form-data")
+            //-     label Select GLB File:
+            //-     input(type="file", name="glb")
+            //-     br
+            //-     input(type="submit", value="UPLOAD")

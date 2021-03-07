@@ -16,6 +16,7 @@ var generate_key = function() {
 };
 
 var socket = require("socket.io");
+const { listen } = require("socket.io");
 
 
 app.use(cors());
@@ -76,7 +77,7 @@ app.get("/update", function(req, res) {
   io.sockets.to(session_to_socket.get(sessionID)).emit("new model", pathToModel);
       
   res.send();
-})
+});
 
 
 // event fired every time a new client connects:
@@ -95,4 +96,57 @@ io.on("connection", (socket) => {
         session_to_socket.delete(sessionID);
       }
   });
+});
+
+
+app.get("/upload/models", function(req, res){
+  client = find_client(req, res);
+  if (client === null){
+    res.sendStatus(403);
+  }
+  var path_to_dir = `./src/static/models/${client.name}`;
+  var model_list = [];
+  fs.readdirSync(path_to_dir).forEach(file => {
+    model_list.push(file);
+  });
+  res.send(model_list);
+});
+
+app.get("/upload", function(req, res){
+  client = find_client(req, res);
+  if (client === null){
+    res.sendStatus(403);
+  }
+  res.render('upload');
+});
+
+app.post("/upload", function(req, res){
+  client = find_client(req, res);
+  if (client === null){
+    res.sendStatus(403);
+  }
+  var fstream;
+  console.log('Post request');
+  req.pipe(req.busboy);
+  if(req.busboy){
+    var counter = 0;
+    req.busboy.on('file', function(fieldname, file, filename){
+      console.log(file);
+      // console.log("Uploading: " + filename);
+      // fstream = fs.createWriteStream(`${__dirname}/static/models/${client.name}/${filename}`);
+      // file.pipe(fstream);
+      // fstream.on('close', function(){
+      //   console.log("Upload Finished of " + filename);
+      //   counter++;
+      //   if(counter == 1){
+      //     res.send("Successfully uploaded");
+      //   }
+      // });
+      res.send("Fuck you");
+    });
+    
+  }
+  else{
+    res.send('Upload Failed');
+  }
 });

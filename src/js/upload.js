@@ -66,6 +66,23 @@ function upload(){
     
 }
 
+function deleteModel(model_name){
+    var r = confirm(`Are you sure you want to delete ${model_name} model ?\nIt will be impossible to restore`);
+    if (r == true) {
+        console.log('Delete');
+        $.ajax({
+            url : `/upload?api_key=${API_KEY}&model=${model_name}`,
+            type : 'DELETE',
+            processData: false,
+            success : function(data) {
+                getModels();
+            }
+        });
+    } else {
+        console.log('Cancel Delete');
+    }
+}
+
 function getModels(){
     
     $.get( `/upload/models?api_key=${API_KEY}`,
@@ -81,8 +98,14 @@ function getModels(){
                 var thelink = $('<a>',{
                     text: element,
                     href: `/?api_key=${API_KEY}&model=${element}`,
-                    target: "_blank"
-                }).appendTo('#listOfModels');
+                    target: "_blank"        
+                });
+                var container = $('<span>', {
+                    class: "container"
+                });
+                container.append(thelink);
+                container.append(`<button style="display:None;" class="badge btn btn-danger" onclick="deleteModel('${element}')">delete</button>`);
+                container.appendTo('#listOfModels');
             });
         });
 

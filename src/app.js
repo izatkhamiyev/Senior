@@ -98,6 +98,17 @@ io.on("connection", (socket) => {
   });
 });
 
+app.delete('/upload', function (req, res) {
+  client = find_client(req, res);
+  if (client === null){
+    res.sendStatus(403);
+  }
+  var path_to_dir = `./src/static/models/${client.name}`;
+  var model_name = req.query.model;
+  fs.unlink(`${path_to_dir}/${model_name}.glb`);
+  res.sendStatus(200);
+});
+
 
 app.get("/upload/models", function(req, res){
   client = find_client(req, res);

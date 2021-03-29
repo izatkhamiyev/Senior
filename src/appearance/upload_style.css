@@ -1,7 +1,25 @@
 
-#listOfModels a{
+#listOfModels .container{
     padding-right: 2em;
 }
+#listOfModels .container a {
+    padding-right: .25em;
+}
+
+#listOfModels .container a:hover + .container{
+    white-space: nowrap;
+}
+
+#listOfModels .container a:hover + button{
+    display: inline-block !important;
+}
+
+#listOfModels .container button:hover{
+    display: inline-block !important;
+    cursor: pointer;
+
+}
+
 
 .no-gutter{
     --bs-gutter-x: 0 !important;

@@ -236,17 +236,10 @@ function init_faceFilter(videoSettings, pathToModel){
             JeelizThreeHelper.render(detectState, THREECAMERA);
         } //end callbackTrack()
     }); //end JEEFACEFILTERAPI.init call
-    
-    // JEEFACEFILTERAPI.set_stabilizationSettings({
-    //     translationFactorRange: [0.001, 0.002],
-    //     rotationFactorRange: [0.0002, 0.005],
-    //     qualityFactorRange: [0.92, 0.98],
-    //     alphaRange: [0.1, 1]
-    // });
 
     JEEFACEFILTERAPI.set_stabilizationSettings({
-        translationFactorRange: [0.001, 0.003],
-        rotationFactorRange: [0.02, 0.2],
+        translationFactorRange: [0.0005, 0.002],
+        rotationFactorRange: [0.01, 0.1],
         qualityFactorRange: [0.92, 0.98],
         alphaRange: [0.15, 1]
     });
